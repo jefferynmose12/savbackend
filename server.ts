@@ -10,11 +10,27 @@ import cors from "cors";
 dotenv.config();
 
 const app = express();
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://savclient-jefferynmose12s-projects.vercel.app",
+];
+
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: (origin, callback) => {
+      // Allow requests with no origin (like mobile apps or curl requests)
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true, // Optional: if you're sending cookies or auth headers
   })
 );
+
 app.use(bodyParser.json());
 
 connectDB();
