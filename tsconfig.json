@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "module": "ESNext", // or "ES6"
+    "moduleResolution": "node", // Ensures node-style resolution of modules
+    "target": "ESNext", // Target the latest JavaScript
+    "esModuleInterop": true,
+    "skipLibCheck": true // Optional but can avoid some type-checking issues
+  }
+}
